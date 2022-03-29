@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "id": 1
+    },
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "id": 2
+    },
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "id": 3
+    },
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "imageURL": "https://media.giphy.com/media/Q2aN4iiaibCus/giphy.gif",
+      "description": "Got me a cookie, gave you a cookie.",
+      "timestamp": "7-3-21",
+      "title": "Schmitty With It",
+      "id": 3
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/1KoN1DMBnCMWk/giphy.gif",
+      "description": "Dolly the kitty.",
+      "timestamp": "8-3-21",
+      "title": "Gene Editing",
+      "id": 4
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/mFwypJecDVTKr7Ijrg/giphy-downsized-large.gif",
+      "description": "Just because we can doesnt mean we should.",
+      "timestamp": "9-3-21",
+      "title": "Gene Editing pt 2",
+      "id": 1
+    },
+    {
+      "title": "coff",
+      "imageURL": "https://media.giphy.com/media/M4ecx9P2jI4tq/giphy.gif",
+      "description": "because, coffee",
+      "userId": 1,
+      "timestamp": 1647543862520,
+      "id": 5
+    },
+    {
+      "title": "Cappy Cabby",
+      "imageURL": "https://media.giphy.com/media/MngEsCTQcZRW8/giphy.gif",
+      "description": "however you need to get there there you are",
+      "userId": 1,
+      "timestamp": "1647544105752",
+      "id": 6
+    },
+    {
+      "title": "PB",
+      "imageURL": "https://media.giphy.com/media/0eeQ10RKR4Pg9qnPEf/giphy.gif",
+      "description": "dive in to code",
+      "userId": 1,
+      "timestamp": "1647544329681",
+      "id": 7
+    },
+    {
+      "title": "tuxedo",
+      "imageURL": "https://media.giphy.com/media/otnqsqqzmsw7K/giphy.gif",
+      "description": "Butterfly ",
+      "userId": 1,
+      "timestamp": "Mon Mar 28 2022 15:00:57 GMT-0500 (Central Daylight Time)",
+      "id": 8
+    }
+  ],
+  "messages": [],
+  "likes": []
+}
