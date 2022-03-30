@@ -6,19 +6,14 @@
       "id": 1
     },
     {
-      "name": "Bryan",
-      "email": "bryan@bn.com",
-      "id": 2
+      "name": "Karl",
+      "email": "Karl@email.com",
+      "id": 5
     },
     {
-      "name": "Bryan",
-      "email": "bryan@bn.com",
-      "id": 3
-    },
-    {
-      "name": "Bryan",
-      "email": "bryan@bn.com",
-      "id": 4
+      "name": "greg",
+      "email": "greg@greg.com",
+      "id": 6
     }
   ],
   "posts": [
@@ -27,6 +22,7 @@
       "description": "Got me a cookie, gave you a cookie.",
       "timestamp": "7-3-21",
       "title": "Schmitty With It",
+      "userId": 5,
       "id": 3
     },
     {
@@ -34,6 +30,7 @@
       "description": "Dolly the kitty.",
       "timestamp": "8-3-21",
       "title": "Gene Editing",
+      "userId": 5,
       "id": 4
     },
     {
@@ -41,6 +38,7 @@
       "description": "Just because we can doesnt mean we should.",
       "timestamp": "9-3-21",
       "title": "Gene Editing pt 2",
+      "userId": 5,
       "id": 1
     },
     {
@@ -70,10 +68,42 @@
     {
       "title": "tuxedo",
       "imageURL": "https://media.giphy.com/media/otnqsqqzmsw7K/giphy.gif",
-      "description": "Butterfly ",
+      "description": "Butterfly in the sky",
       "userId": 1,
       "timestamp": "Mon Mar 28 2022 15:00:57 GMT-0500 (Central Daylight Time)",
       "id": 8
+    },
+    {
+      "title": "this ",
+      "imageURL": "https://media.giphy.com/media/gRvpSsS0BnA5y/giphy.gif",
+      "description": "meh",
+      "userId": 1,
+      "timestamp": "Wed Mar 30 2022 10:53:57 GMT-0500 (Central Daylight Time)",
+      "id": 9
+    },
+    {
+      "title": "this ",
+      "imageURL": "https://media.giphy.com/media/lT9Umq2C9QgNO/giphy.gif",
+      "description": "this",
+      "userId": 1,
+      "timestamp": "Wed Mar 30 2022 11:00:41 GMT-0500 (Central Daylight Time)",
+      "id": 10
+    },
+    {
+      "title": "fresh",
+      "imageURL": "https://media.giphy.com/media/y3QOvy7xxMwKI/giphy.gif",
+      "description": "prince ",
+      "userId": 5,
+      "timestamp": "Wed Mar 30 2022 11:30:39 GMT-0500 (Central Daylight Time)",
+      "id": 11
+    },
+    {
+      "title": "first post ",
+      "imageURL": "https://media.giphy.com/media/H3upGMAE4p3iw/giphy.gif",
+      "description": "Hello World",
+      "userId": 6,
+      "timestamp": "Wed Mar 30 2022 11:48:01 GMT-0500 (Central Daylight Time)",
+      "id": 12
     }
   ],
   "messages": [],

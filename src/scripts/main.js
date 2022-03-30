@@ -1,10 +1,12 @@
-import { getPosts, getUsers, createPost, getSinglePost, updatePost } from "./data/DataManager.js"
+import { getPosts, registerUser, loginUser, getUsers, createPost, getSinglePost, updatePost, logoutUser, setLoggedInUser, getLoggedInUser } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./nav/Footer.js";
 import { PostEntry } from "./feed/PostEntry.js";
 import { deletePost } from "./data/DataManager.js";
 import { PostEdit } from "./feed/PostEdit.js";
+import { LoginForm } from "./auth/LoginForm.js";
+import { RegisterForm } from "./auth/RegisterForm.js";
 /**
  * Main logic module for what should happen on initial page load for Giffygram
  */
@@ -34,6 +36,17 @@ const showPostList = () => {
 	const postElement = document.querySelector(".postList");
 	getPosts().then((allPosts) => {
 		postElement.innerHTML = PostList(allPosts);
+	})
+}
+
+const filterPostList=()=>{
+	const postElement = document.querySelector(".postList");
+	getPosts().then((allPost)=> {
+		const loggedInPost=allPost.filter((singlePost)=>{if(getLoggedInUser().id===singlePost.userId){
+			return singlePost
+		}
+	})
+		postElement.innerHTML=PostList(loggedInPost)
 	})
 }
 
@@ -95,11 +108,7 @@ document.querySelector(".giffygram").addEventListener("click", (event) => {
 	}
 })
 
-document.querySelector(".giffygram").addEventListener("click", event => {
-	if (event.target.id === "newPost__cancel") {
-		//clear the input fields
-	}
-  })
+
   
   document.querySelector(".giffygram").addEventListener("click", event => {
 	event.preventDefault();
@@ -114,7 +123,7 @@ document.querySelector(".giffygram").addEventListener("click", event => {
 		  title: title,
 		  imageURL: url,
 		  description: description,
-		  userId: 1,
+		  userId: getLoggedInUser().id,
 		  timestamp: Date(Date.now())
 	  }
 		createPost(postObject)
@@ -145,7 +154,8 @@ document.querySelector(".giffygram").addEventListener("click", event => {
 	  const postId = event.target.id.split("__")[1];
 	  getSinglePost(postId)
 		.then(response => {
-		  showEdit(response);
+			if(response.userId===getLoggedInUser().id){
+		  showEdit(response);}
 		})
 	}
   })
@@ -181,5 +191,107 @@ document.querySelector(".giffygram").addEventListener("click", event => {
 		.then(response => {
 		  showPostList();
 		})
+	}
+  })
+
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	if (event.target.id === "newPost__cancel") {
+		document.querySelector(".entryForm").innerHTML=PostEntry()
+	}
+  })
+
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	  logoutUser();
+	  console.log(getLoggedInUser());
+	}
+  })
+
+  const checkForUser = () => {
+	if (sessionStorage.getItem("user")){
+	  setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+	  startGiffyGram();
+	}else {
+	 showLoginRegister()
+	  console.log("showLogin")
+	}
+  }
+
+
+
+const showLoginRegister = () => {
+	showNavBar();
+	const entryElement = document.querySelector(".entryForm");
+	//template strings can be used here too
+	entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+	//make sure the post list is cleared out too
+  const postElement = document.querySelector(".postList");
+  postElement.innerHTML = "";
+}
+
+checkForUser()
+
+document.querySelector(".giffygram").addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "login__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='name']").value,
+		email: document.querySelector("input[name='email']").value
+	  }
+	  loginUser(userObject)
+	  .then(dbUserObj => {
+		if(dbUserObj){
+		  sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		  startGiffyGram();
+		}else {
+		  //got a false value - no user
+		  const entryElement = document.querySelector(".entryForm");
+		  entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.</p> ${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+		}
+	  })
+	}
+  })
+
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "register__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='registerName']").value,
+		email: document.querySelector("input[name='registerEmail']").value
+	  }
+	  registerUser(userObject)
+	  .then(dbUserObj => {
+		sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		startGiffyGram();
+	  })
+	}
+  })
+
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	  logoutUser();
+	  console.log(getLoggedInUser());
+	  sessionStorage.clear();
+	  checkForUser();
+	}
+  })
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("showAll")) {
+		showPostList();
+	}
+  })
+
+  document.querySelector(".giffygram").addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("showMyPosts")) {
+		filterPostList();
 	}
   })
